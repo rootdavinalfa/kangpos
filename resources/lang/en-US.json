@@ -1,0 +1,10 @@
+{
+  "lang-id": "en-US",
+  "description": "Language data for en-US",
+  "data": [
+    {
+      "key": "SUCCESS_FETCHED",
+      "value": "Data Successfully Fetched!"
+    }
+  ]
+}
