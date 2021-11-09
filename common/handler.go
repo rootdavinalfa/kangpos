@@ -16,10 +16,15 @@ import (
 )
 
 // RespondJSON makes the response with payload as json format
-func RespondJSON(w http.ResponseWriter, status int, payload interface{}, keyLang string) {
+func RespondJSON(w http.ResponseWriter, r *http.Request, status int, payload interface{}, keyLang string) {
+
+	langID := r.URL.Query().Get("lang")
+	if langID == "" {
+		langID = "en-US"
+	}
 
 	message := lang.GetLangValue(lang.LangParams{
-		LangID: "en-US",
+		LangID: langID,
 		Key:    keyLang,
 	})
 

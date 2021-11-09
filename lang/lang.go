@@ -9,7 +9,6 @@ package lang
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 )
@@ -30,32 +29,35 @@ type LangData struct {
 	Value string `json:"value"`
 }
 
-func readJson(langID string) *LangModel {
+func readJson(langID string) (*LangModel, error) {
 	path := "./resources/lang/" + langID + ".json"
 	jsonFile, err := ioutil.ReadFile(path)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
+		return nil, err
 	}
 
 	lang := LangModel{}
 	err = json.Unmarshal(jsonFile, &lang)
 	if err != nil {
-		fmt.Println(err.Error())
-		return nil
+		log.Println(err.Error())
+		return nil, err
 	}
 
-	return &lang
+	return &lang, err
 }
 
 func GetLangValue(param LangParams) string {
 
-	var lang = readJson(param.LangID)
-	if lang != nil {
+	var lang, err = readJson(param.LangID)
+	if err != nil {
 		log.Println("Failed to parse language!")
+		return err.Error()
 	}
 
 	if lang.LangID != param.LangID {
 		log.Println("Returned language not match")
+		return "n/a"
 	}
 	for _, value := range lang.Data {
 		if value.Key == param.Key {

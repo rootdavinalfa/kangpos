@@ -18,7 +18,7 @@ import (
 func getAllMail(w http.ResponseWriter, r *http.Request) {
 	var mails []Mail
 	DB.Preload("Attachments").Preload("MailTarget").Find(&mails)
-	common.RespondJSON(w, http.StatusOK, mails, "SUCCESS_FETCHED")
+	common.RespondJSON(w, r, http.StatusOK, mails, "SUCCESS_FETCHED")
 }
 
 func getMail(w http.ResponseWriter, r *http.Request) {
@@ -26,7 +26,7 @@ func getMail(w http.ResponseWriter, r *http.Request) {
 	mailID := params["id"]
 	var mail Mail
 	DB.Preload("Attachments").Preload("MailTarget").Find(&mail, mailID)
-	common.RespondJSON(w, http.StatusOK, mail, "SUCCESS_FETCHED")
+	common.RespondJSON(w, r, http.StatusOK, mail, "SUCCESS_FETCHED")
 }
 
 func newMail(w http.ResponseWriter, r *http.Request) {
@@ -39,5 +39,5 @@ func newMail(w http.ResponseWriter, r *http.Request) {
 	DB.Clauses(clause.OnConflict{
 		DoNothing: true,
 	}).Create(&mail)
-	common.RespondJSON(w, http.StatusCreated, mail, "SUCCESS_FETCHED")
+	common.RespondJSON(w, r, http.StatusCreated, mail, "SUCCESS_FETCHED")
 }
