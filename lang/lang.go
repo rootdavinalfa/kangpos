@@ -19,7 +19,7 @@ type LangParams struct {
 }
 
 type LangModel struct {
-	LangID      string     `json:"lang_id"`
+	LangID      string     `json:"lang-id"`
 	Description string     `json:"description"`
 	Data        []LangData `json:"data"`
 }
@@ -59,6 +59,7 @@ func GetLangValue(param LangParams) string {
 		log.Println("Returned language not match")
 		return "n/a"
 	}
+	println(param.LangID)
 	for _, value := range lang.Data {
 		if value.Key == param.Key {
 			return value.Value

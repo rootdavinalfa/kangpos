@@ -19,7 +19,7 @@ import (
 func RespondJSON(w http.ResponseWriter, r *http.Request, status int, payload interface{}, keyLang string) {
 
 	langID := r.URL.Query().Get("lang")
-	if langID == "" {
+	if len(langID) == 0 {
 		langID = "en-US"
 	}
 
