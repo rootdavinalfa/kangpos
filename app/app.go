@@ -12,8 +12,8 @@ import (
 	"github.com/gorilla/mux"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
-	"kangpos/app/mail"
 	"kangpos/config"
+	"kangpos/service/mail"
 	"log"
 	"net/http"
 )
@@ -30,8 +30,9 @@ func (a *App) Initialize(config *config.Config) {
 		log.Fatal("Could not connect database")
 	}
 	Router = mux.NewRouter()
-	mail.SetRoutes(Router, db)
+	SetRoutes(Router)
 	mail.DBMigrate(db)
+	//cron.Initialize()
 }
 
 func (a *App) Run(host string) {

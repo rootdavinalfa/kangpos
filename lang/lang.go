@@ -18,18 +18,18 @@ type LangParams struct {
 	Key    string
 }
 
-type LangModel struct {
-	LangID      string     `json:"lang-id"`
-	Description string     `json:"description"`
-	Data        []LangData `json:"data"`
+type Model struct {
+	LangID      string `json:"lang-id"`
+	Description string `json:"description"`
+	Data        []Data `json:"data"`
 }
 
-type LangData struct {
+type Data struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
 }
 
-func readJson(langID string) (*LangModel, error) {
+func readJson(langID string) (*Model, error) {
 	path := "./resources/lang/" + langID + ".json"
 	jsonFile, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -37,7 +37,7 @@ func readJson(langID string) (*LangModel, error) {
 		return nil, err
 	}
 
-	lang := LangModel{}
+	lang := Model{}
 	err = json.Unmarshal(jsonFile, &lang)
 	if err != nil {
 		log.Println(err.Error())

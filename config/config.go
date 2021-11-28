@@ -18,7 +18,7 @@ type DBConfig struct {
 func GetConfig() *Config {
 	return &Config{
 		DB: &DBConfig{
-			Dsn: "kangpos.data",
+			Dsn: "kangpos.sqlite",
 		},
 	}
 }

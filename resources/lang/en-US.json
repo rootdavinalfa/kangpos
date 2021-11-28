@@ -5,6 +5,18 @@
     {
       "key": "SUCCESS_FETCHED",
       "value": "Data Successfully Fetched!"
+    },
+    {
+      "key": "SUCCESS_DELETED",
+      "value": "Data Successfully Deleted!"
+    },
+    {
+      "key": "ERROR_SEND_MAIL",
+      "value": "Can't send mail"
+    },
+    {
+      "key": "SUCCESS_SEND_MAIL",
+      "value": "Email has been sent!"
     }
   ]
 }
